@@ -12,7 +12,7 @@ class CreateSharesTable extends Migration
      */
     public function up()
     {
-        Schema::create('shares', function (Blueprint $table) {
+        Schema::create('shares', function (Blueprint $table) {            
             $table->increments('id');
             $table->string('share_title');
             $table->string('share_description');
@@ -21,7 +21,8 @@ class CreateSharesTable extends Migration
             $table->integer('share_like_count');
             $table->integer('share_format_id');
             $table->integer('share_category_id');
-            $table->integer('user_id');
+            $table->integer('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

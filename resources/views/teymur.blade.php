@@ -19,7 +19,7 @@
                         <div class="col-md-3  left">
                             <div class=" one" style=" border-top-left-radius: 3px;">
                                 <span><a class="fa fa-pencil" aria-hidden="true"></a></span>
-                                <h1>Teymur Nasirli</h1>
+                                <h1></h1>
                                 <img src="assets/img/no.jpg" alt="">
                             </div>
                             <div class="col-md-12  two">

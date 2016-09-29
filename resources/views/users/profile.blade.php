@@ -19,14 +19,14 @@
                         <div class="col-md-3  left">
                             <div class=" one" style=" border-top-left-radius: 3px;">
                                 <span><a class="fa fa-pencil" aria-hidden="true"></a></span>
-                                <h1>Teymur Nasirli</h1>
-                                <img src="assets/img/no.jpg" alt="">
+                                    <h1>{{ \Auth::user()->name }}<span>{{ \Auth::user()->user_surname }}</span></h1>
+                                <img src="/storage/mask.jpg">
                             </div>
                             <div class="col-md-12  two">
                                 <ul>
                                     <li><i class="fa fa-eye pull-left" aria-hidden="true"></i>
                                         <p>PROJECT VIEWS</p><span class="pull-right">0</span></li>
-                                    <li><i class="fa fa-thumbs-up pull-left" aria-hidden="true"></i>
+                                    <li><i class="fa fa-thumbs-up pull-left" aria-hidden="true"></i>    
                                         <p>APPRECIATIONS</p><span class="pull-right">0</span></li>
                                     <li><i class="fa fa-user pull-left" aria-hidden="true"></i>
                                         <p>FOLLOWERS</p><span class="pull-right">0</span></li>
@@ -53,12 +53,39 @@
                                 <h1><span>Projects</span></h1>
                             </div>
                             <div class="col-md-12  text-center file">
-                                <label for="inpt" class="col-md-8 col-md-offset-2 upload">
-                                    <div><i class="fa fa-cloud-upload fa-5x icon" aria-hidden="true"></i></div>
-                                    <h1>Add your first project</h1>
-                                    <input type="file" id="inpt">
-                                    <label for="inpt"><i class="fa fa-cloud-upload pull-right " aria-hidden="true"><span>Upload Files</span></i></label>
-                                </label>
+                                @foreach ($shares as $share)
+                        <div class="thumb" id="{{ $share->id }}">
+                            <div class="thumbImgWrapper">
+                                <img src="{{ $share->share_content }}" class="thumbImg img-responsive">
+                            </div>
+
+                            <div class="row row1">
+                                <div class="col-xs-1 thumbLogo">
+                                    <img src="https://a3.behance.net/img/galleries/icons/square/1x/gallery-4.png?cb=244765838">
+                                </div>
+                                <div class="col-xs-6 thumbType">
+                                    <a href="#">Motion</a>
+                                </div>
+                                <div class="col-xs-1 thumbStar pull-right">
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                </div>
+                            </div><!-- end .row1 -->
+
+                            <div class="row row2">
+                                <div class="col-xs-1 thumbLikeIcon">
+                                    <i class="fa fa-thumbs-up" aria-hidden="true"></i>
+                                </div>
+                                <div class="col-xs-1 thumbLikeCount">
+                                    <p>{{ $share->share_like_count }}</p>
+                                </div>
+                                <a  href="/edit/{{ $share->id }}" type="button" class="btn btn-default" >Update</a>
+                                <form method="POST" action="/delete/{{ $share->id }}">
+                                    {{ csrf_field() }}
+                                    <input type="submit" class="btn btn-danger" value="Delete">
+                                </form>
+                            </div>
+                        </div><!-- end .thumb -->
+                    @endforeach
                             </div>
                         </div>
                     </div>
